@@ -1,0 +1,23 @@
+pipeline{
+  agent any
+  stages{
+    stage('Checkout'){
+      step{
+        echo 'Checking out Repo'
+        git 'https://github.com/BLACKSQUAD491/myremote'
+      }
+    }
+    stage('Publish'){
+      steps{
+        publishHTML([
+          allowmissing:true, 
+          alwaysLinktoLastBuild:False,
+          keepAll:False,
+          reportDir:'.',
+          reportFiles:'Index.html',
+          reportName: 'MY HTML PIPE PAGE'
+        ])
+    }
+  }
+}
+}
